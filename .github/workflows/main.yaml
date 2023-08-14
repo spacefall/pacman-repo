@@ -30,7 +30,9 @@ jobs:
         run: git clone https://aur.archlinux.org/vscodium-electron.git
 
       - name: Patching PKGBUILD
-        run: sed -E 's/_electron=.+/_electron=electron/gm;t' ./vscodium-electron/PKGBUILD > ./vscodium-electron/PKGBUILD
+        run: |
+            sed -E 's/_electron=.+/_electron=electron/gm;t' ./vscodium-electron/PKGBUILD > ./vscodium-electron/PKGBUILD
+            sed -E 's/depends = electron.+/depends = electron/gm;t' ./vscodium-electron/.SRCINFO > ./vscodium-electron/.SRCINFO
 
       - name: Building...
         uses: edlanglois/pkgbuild-action@v1.1.8
