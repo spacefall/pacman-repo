@@ -23,22 +23,19 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      #- uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          ref: patches
 
       # Runs a single command using the runners shell
       - name: Cloning vscodium-electron
         run: git clone https://aur.archlinux.org/vscodium-electron.git
 
-      - name: Patching PKGBUILD
+      - name: Patching...
         run: |
-            sed -E 's/_electron=.+/_electron=electron/gm;t' ./vscodium-electron/PKGBUILD > ./vscodium-electron/PKGBUILD
-            sed -E 's/depends = electron.+/depends = electron/gm;t' ./vscodium-electron/.SRCINFO > ./vscodium-electron/.SRCINFO
-
-      - name: Checking...
-        uses: 2m/arch-pkgbuild-builder@v1.19
-        with:
-          target: srcinfo
-          pkgname: vscodium-electron/
+            cd vscodium-electron
+            patch -u < ../vscodium-electron-patch/PKGBUILD.patch
+            patch -u < ../vscodium-electron-patch/SRCINFO.patch
 
       - name: Building...
         uses: 2m/arch-pkgbuild-builder@v1.19
