@@ -38,6 +38,7 @@ jobs:
         uses: edlanglois/pkgbuild-action@v1.1.8
         with:
           pkgdir: "./vscodium-electron/"
+          namcapDisable: true
 
       - uses: actions/upload-artifact@v3
         with:
