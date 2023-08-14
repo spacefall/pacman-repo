@@ -3,7 +3,7 @@
 name: Update Packages
 
 # Controls when the workflow will run
-on:
+on: [push, workflow_dispatch]
   # Triggers the workflow on push or pull request events but only for the "main" branch
   #push:
   #  branches: [ "main" ]
@@ -11,7 +11,7 @@ on:
   #  branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  #workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,15 +34,25 @@ jobs:
             sed -E 's/_electron=.+/_electron=electron/gm;t' ./vscodium-electron/PKGBUILD > ./vscodium-electron/PKGBUILD
             sed -E 's/depends = electron.+/depends = electron/gm;t' ./vscodium-electron/.SRCINFO > ./vscodium-electron/.SRCINFO
 
-      - name: Building...
-        uses: edlanglois/pkgbuild-action@v1.1.8
+      - name: Checking...
+        uses: 2m/arch-pkgbuild-builder@v1.19
         with:
-          pkgdir: "./vscodium-electron/"
-          namcapDisable: true
+          target: srcinfo
+          pkgname: vscodium-electron/
+
+      - name: Building...
+        uses: 2m/arch-pkgbuild-builder@v1.19
+        with:
+          target: pkgbuild
+          pkgname: vscodium-electron/
+        #uses: edlanglois/pkgbuild-action@v1.1.8
+        #with:
+        #  pkgdir: "./vscodium-electron/"
+        #  namcapDisable: true
 
       - uses: actions/upload-artifact@v3
         with:
           name: vscodium-electron
-          path: ${{ steps.makepkg.outputs.pkgfile0 }}
+          path: ${{ env.ARCH_PKG_NAME }}
 
       
