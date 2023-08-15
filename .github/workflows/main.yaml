@@ -38,18 +38,19 @@ jobs:
             patch -u < ../vscodium-electron-patch/SRCINFO.patch
 
       - name: Building...
-        uses: 2m/arch-pkgbuild-builder@v1.19
-        with:
-          target: pkgbuild
-          pkgname: vscodium-electron/
-        #uses: edlanglois/pkgbuild-action@v1.1.8
+        id: build
+        #uses: 2m/arch-pkgbuild-builder@v1.19
         #with:
-        #  pkgdir: "./vscodium-electron/"
+        #  target: pkgbuild
+        #  pkgname: vscodium-electron/
+        uses: edlanglois/pkgbuild-action@v1
+        with:
+          pkgdir: "./vscodium-electron/"
         #  namcapDisable: true
 
       - uses: actions/upload-artifact@v3
         with:
           name: vscodium-electron
-          path: ${{ env.ARCH_PKG_NAME }}
+          path: ${{ steps.build.outputs.pkgfile0 }}
 
       
