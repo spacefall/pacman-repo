@@ -34,7 +34,6 @@ jobs:
       - name: Patching...
         run: |
             cd vscodium-electron
-            cp ../vscodium-electron-patch/electron_disable_checksum.patch .
             patch -u < ../vscodium-electron-patch/PKGBUILD.patch
             patch -u < ../vscodium-electron-patch/SRCINFO.patch
 
