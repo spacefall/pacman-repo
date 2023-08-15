@@ -43,9 +43,9 @@ jobs:
         #with:
         #  target: pkgbuild
         #  pkgname: vscodium-electron/
-        uses: edlanglois/pkgbuild-action@v1
+        uses: edlanglois/pkgbuild-action@v1.1.8
         with:
-          pkgdir: "./vscodium-electron/"
+          pkgdir: vscodium-electron/
         #  namcapDisable: true
 
       - uses: actions/upload-artifact@v3
