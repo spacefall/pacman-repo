@@ -39,18 +39,18 @@ jobs:
 
       - name: Building...
         id: build
-        #uses: 2m/arch-pkgbuild-builder@v1.19
-        #with:
-        #  target: pkgbuild
-        #  pkgname: vscodium-electron/
-        uses: edlanglois/pkgbuild-action@v1.1.8
+        uses: 2m/arch-pkgbuild-builder@v1.19
         with:
-          pkgdir: vscodium-electron/
+          target: pkgbuild
+          pkgname: vscodium-electron/
+        #uses: edlanglois/pkgbuild-action@v1.1.8
+        #with:
+        #  pkgdir: vscodium-electron/
         #  namcapDisable: true
 
       - uses: actions/upload-artifact@v3
         with:
           name: vscodium-electron
-          path: ${{ steps.build.outputs.pkgfile0 }}
+          path: vscodium-electron/
 
       
