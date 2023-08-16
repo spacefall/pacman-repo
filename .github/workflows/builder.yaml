@@ -1,0 +1,36 @@
+name: Build Package
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting Patches
+        uses: actions/checkout@v3
+        with:
+          ref: patches
+
+      - name: Getting PKGBUILD
+        run: git clone https://aur.archlinux.org/${{inputs.package}}.git
+
+      - name: Patching sources
+        run: |
+            cd ${{inputs.package}}
+            [ -d "../${{inputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -p1 < $i; done
+
+      - name: Building
+        uses: 2m/arch-pkgbuild-builder@v1.19
+        with:
+          target: pkgbuild
+          pkgname: ${{inputs.package}}/
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{inputs.package}}
+          path: ${{inputs.package}}/*.pkg*
