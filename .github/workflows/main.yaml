@@ -21,7 +21,13 @@ jobs:
       - name: Patching sources
         run: |
             cd ${{github.job}}
-            [ -d "../${{github.job}}-patch/" ] && for i in ../${{github.job}}-patch/*.patch; do patch -u < $i; done || echo "No patches to apply"
+            if [ -d "../${{github.job}}-patch/" ]; then
+                for i in ../${{github.job}}-patch/*.patch; do 
+                    patch -u < $i
+                done
+            else 
+                echo "No patches to apply"
+            fi
 
       - name: Building
         uses: 2m/arch-pkgbuild-builder@v1.19
