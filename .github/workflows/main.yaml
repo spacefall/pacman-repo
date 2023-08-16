@@ -8,12 +8,12 @@ on:
 
 jobs:
   vscodium:
-    uses: ./.github/workflows/builder.yml
+    uses: ./.github/workflows/builder.yaml
     with:
       package: vscodium-electron
 
   discord:
-    uses: ./.github/workflows/builder.yml
+    uses: ./.github/workflows/builder.yaml
     with:
       package: discord-electron
 
