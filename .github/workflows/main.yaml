@@ -1,56 +1,64 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Update Packages
+on:
+  push:
+    branches: [ "patches" ]
+  pull_request:
+    branches: [ "patches" ]
+  workflow_dispatch:
 
-# Controls when the workflow will run
-on: [push, workflow_dispatch]
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  #push:
-  #  branches: [ "main" ]
-  #pull_request:
-  #  branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  #workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  vscodium:
-    # The type of runner that the job will run on
+  vscodium-electron:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Getting Patches
+        uses: actions/checkout@v3
         with:
           ref: patches
 
-      # Runs a single command using the runners shell
-      - name: Cloning vscodium-electron
-        run: git clone https://aur.archlinux.org/vscodium-electron.git
+      - name: Getting PKGBUILD
+        run: git clone https://aur.archlinux.org/${{github.job}}.git
 
-      - name: Patching...
+      - name: Patching sources
         run: |
-            cd vscodium-electron
-            patch -u < ../vscodium-electron-patch/PKGBUILD.patch
-            patch -u < ../vscodium-electron-patch/SRCINFO.patch
+            cd ${{github.job}}
+            [ -d "../${{github.job}}-patch/" ] && for i in ../${{github.job}}-patch/*.patch; do patch -p1 < $i; done
 
-      - name: Building...
-        id: build
+      - name: Building
         uses: 2m/arch-pkgbuild-builder@v1.19
         with:
           target: pkgbuild
-          pkgname: vscodium-electron/
-        #uses: edlanglois/pkgbuild-action@v1.1.8
-        #with:
-        #  pkgdir: vscodium-electron/
-        #  namcapDisable: true
+          pkgname: ${{github.job}}/
 
       - uses: actions/upload-artifact@v3
         with:
-          name: vscodium-electron
-          path: vscodium-electron/*.zst
+          name: ${{github.job}}
+          path: ${{github.job}}/*.pkg*
+
+  discord-electron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting Patches
+        uses: actions/checkout@v3
+        with:
+          ref: patches
+
+      - name: Getting PKGBUILD
+        run: git clone https://aur.archlinux.org/${{github.job}}.git
+
+      - name: Patching sources
+        run: |
+            cd ${{github.job}}
+            [ -d "../${{github.job}}-patch/" ] && for i in ../${{github.job}}-patch/*.patch; do patch -p1 < $i; done
+
+      - name: Building
+        uses: 2m/arch-pkgbuild-builder@v1.19
+        with:
+          target: pkgbuild
+          pkgname: ${{github.job}}/
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{github.job}}
+          path: ${{github.job}}/*.pkg*
 
       
