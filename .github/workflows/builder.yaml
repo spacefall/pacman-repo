@@ -22,7 +22,7 @@ jobs:
       - name: Patching sources
         run: |
             cd ${{inputs.package}}
-            [ -d "../${{inputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -p1 < $i; done
+            [ -d "../${{inputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -u < $i; done || echo "No patches to apply"
 
       - name: Building
         uses: 2m/arch-pkgbuild-builder@v1.19
