@@ -8,13 +8,13 @@ on:
 
 jobs:
   vscodium:
-    uses: spacefall/pacman-repo/.github/workflows/builder.yml@main
+    uses: ./.github/workflows/builder.yml
     with:
       package: vscodium-electron
 
   discord:
-    uses: spacefall/pacman-repo/.github/workflows/builder.yml@main
+    uses: ./.github/workflows/builder.yml
     with:
-      package: vscodium-electron
+      package: discord-electron
 
       
