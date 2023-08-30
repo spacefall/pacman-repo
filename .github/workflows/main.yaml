@@ -11,10 +11,16 @@ jobs:
     uses: ./.github/workflows/builder.yaml
     with:
       package: vscodium-electron
+      isAur: true
 
-  discord:
+  #discord:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: discord-electron
+
+  bitwarden:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: discord-electron
-
+      package: bitwarden
+      isAur: false
       
