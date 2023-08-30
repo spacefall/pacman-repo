@@ -19,13 +19,18 @@ jobs:
         with:
           ref: patches
 
-      - name: Getting PKGBUILD
+      - name: Getting PKGBUILD - AUR
+        if: isAur == true
         run: git clone https://aur.archlinux.org/${{inputs.package}}.git
+
+      - name: Getting PKGBUILD - Arch Gitlab
+        if: isAur == false
+        run: git clone https://gitlab.archlinux.org/archlinux/packaging/packages/${{inputs.package}}.git
 
       - name: Patching sources
         run: |
             cd ${{inputs.package}}
-            [ -d "../${{inputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -u < $i; done || echo "No patches to apply"
+            [ -d "../${{https://gitlab.archlinux.org/archlinux/packaging/packages/bitwarden.gitinputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -u < $i; done || echo "No patches to apply"
 
       - name: Building
         uses: 2m/arch-pkgbuild-builder@v1.19
