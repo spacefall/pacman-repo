@@ -7,21 +7,28 @@ on:
   workflow_dispatch:
 
 jobs:
-  #vscodium:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: vscodium-electron
-  #    isAur: true
+  vscodium:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: vscodium-electron
+      isAur: true
 
-  #discord:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: discord-electron
+  discord:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: vencord-desktop-git
+      isAur: true
 
   bitwarden:
     uses: ./.github/workflows/builder.yaml
     with:
       package: bitwarden
+      isAur: false
+
+  spotify:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: spotify
       isAur: false
   
   #testing-archrepo:
