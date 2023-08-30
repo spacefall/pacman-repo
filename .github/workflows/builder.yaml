@@ -6,6 +6,9 @@ on:
       package:
         required: true
         type: string
+      isAur:
+        required: true
+        type: boolean
 
 jobs:
   build:
