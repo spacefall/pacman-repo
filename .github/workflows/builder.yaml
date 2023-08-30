@@ -31,12 +31,18 @@ jobs:
         run: |
             cd ${{inputs.package}}
             [ -d "../${{https://gitlab.archlinux.org/archlinux/packaging/packages/bitwarden.gitinputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -u < $i; done || echo "No patches to apply"
+            [ -f ".SRCINFO" ] && rm -f .SRCINFO
 
       - name: Building
-        uses: 2m/arch-pkgbuild-builder@v1.19
+        uses: hapakaien/archlinux-package-action@v2
         with:
-          target: pkgbuild
-          pkgname: ${{inputs.package}}/
+          path: ${{inputs.package}}/
+          srcinfo: true
+          aur: true
+      #  uses: 2m/arch-pkgbuild-builder@v1.19
+      #  with:
+      #    target: pkgbuild
+      #    pkgname: ${{inputs.package}}/
 
       - uses: actions/upload-artifact@v3
         with:
