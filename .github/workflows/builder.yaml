@@ -30,7 +30,7 @@ jobs:
       - name: Patching sources
         run: |
             cd ${{inputs.package}}
-            [ -d "../${{https://gitlab.archlinux.org/archlinux/packaging/packages/bitwarden.gitinputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -u < $i; done || echo "No patches to apply"
+            [ -d "../${{inputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -u < $i; done || echo "No patches to apply"
             [ -f ".SRCINFO" ] && rm -f .SRCINFO
 
       - name: Building
