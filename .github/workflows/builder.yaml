@@ -31,7 +31,7 @@ jobs:
         run: |
             cd ${{inputs.package}}
             [ -d "../${{inputs.package}}-patch/" ] && for i in ../${{inputs.package}}-patch/*.patch; do patch -u < $i; done || echo "No patches to apply"
-            [ -f ".SRCINFO" ] && rm -f .SRCINFO
+            [ -f ".SRCINFO" ] && echo "Deleting .SRCINFO" && rm -f .SRCINFO || echo ".SRCINFO isn't present"
 
       - name: Building
         uses: hapakaien/archlinux-package-action@v2
