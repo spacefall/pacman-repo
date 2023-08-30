@@ -20,11 +20,11 @@ jobs:
           ref: patches
 
       - name: Getting PKGBUILD - AUR
-        if: isAur == true
+        if: ${{inputs.isAur}} == true
         run: git clone https://aur.archlinux.org/${{inputs.package}}.git
 
       - name: Getting PKGBUILD - Arch Gitlab
-        if: isAur == false
+        if: ${{inputs.isAur}} == false
         run: git clone https://gitlab.archlinux.org/archlinux/packaging/packages/${{inputs.package}}.git
 
       - name: Patching sources
