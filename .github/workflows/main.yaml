@@ -7,20 +7,30 @@ on:
   workflow_dispatch:
 
 jobs:
-  vscodium:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: vscodium-electron
-      isAur: true
+  #vscodium:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: vscodium-electron
+  #    isAur: true
 
   #discord:
   #  uses: ./.github/workflows/builder.yaml
   #  with:
   #    package: discord-electron
 
-  bitwarden:
+  #bitwarden:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: bitwarden
+  #    isAur: false
+  testing-archrepo:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: bitwarden
+      package: lolcat
       isAur: false
       
+  testing-aur:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: c-lolcat
+      isAur: true
