@@ -26,7 +26,7 @@ jobs:
   spotify:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: spotify-dev
+      package: spotify-snapstore
       isAur: true
   
   #testing-archrepo:
