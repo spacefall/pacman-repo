@@ -1,9 +1,7 @@
 name: Update Packages
 on:
-  push:
-    branches: [ "patches" ]
-  pull_request:
-    branches: [ "patches" ]
+  schedule:
+    - cron: "0 0 * * 0"
   workflow_dispatch:
 
 jobs:
@@ -28,7 +26,7 @@ jobs:
   spotify:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: spotify
+      package: spotify-dev
       isAur: true
   
   #testing-archrepo:
