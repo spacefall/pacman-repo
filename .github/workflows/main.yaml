@@ -60,12 +60,13 @@ jobs:
             cd ..
             docker run --rm --user "$(id -u):$(id -g)" --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}" --workdir "/src/${{ github.repository }}" ghcr.io/fwcd/archlinux ./create-db
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: Publish release
         if: github.ref == 'refs/heads/main'
-        with:
-          tag_name: $(date '+%Y-%m-%d-%H-%M')
-          files: repo/*
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="$(date '+%Y-%m-%d-%H-%M')"
+          gh release create "$tag" --title "$tag" --notes "" repo/*
   
   #testing-archrepo:
   #  uses: ./.github/workflows/builder.yaml
