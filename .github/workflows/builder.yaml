@@ -14,27 +14,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Getting Patches
-        uses: actions/checkout@v3
-        with:
-          ref: main
-
-      - name: Getting PKGBUILD - AUR
+      - name: Get Patches
+        uses: actions/checkout@v4
+        
+      - name: Get PKGBUILD - AUR
         if: ${{inputs.isAur}}
         run: git clone https://aur.archlinux.org/${{inputs.package}}.git
 
-      - name: Getting PKGBUILD - Arch Gitlab
+      - name: Get PKGBUILD - Arch Gitlab
         if: ${{!inputs.isAur}}
         run: git clone https://gitlab.archlinux.org/archlinux/packaging/packages/${{inputs.package}}.git
 
-      - name: Patching sources
+      - name: Patch sources
         run: |
             cd ${{inputs.package}}
             [ -d "../${{inputs.package}}-patch/" ] && cp ../${{inputs.package}}-patch/* . && for i in *.patch; do patch -u < $i; done || echo "No patches to apply"
             [ -f ".SRCINFO" ] && echo "Deleting .SRCINFO" && rm -f .SRCINFO || echo ".SRCINFO isn't present"
 
-      - name: Building
-        #uses: 2m/arch-pkgbuild-builder@v1.19
+      - name: Build
         uses: spacefall/arch-pkgbuild-builder@main
         with:
           target: pkgbuild

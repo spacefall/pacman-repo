@@ -8,44 +8,42 @@ on:
   workflow_dispatch:
 
 jobs:
-  #vscodium:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: vscodium-electron
-  #    isAur: true
-
-  #discord:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: vencord-desktop-git
-  #    isAur: true
-  testing-aur:
+  vscodium:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: c-lolcat
+      package: vscodium-electron
       isAur: true
-  
-  #bitwarden:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: bitwarden
-  #    isAur: false
 
-  #spotify:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: spotify-snapstore
-  #    isAur: true
+  discord:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: vencord-desktop-git
+      isAur: true
+
+  bitwarden:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: bitwarden
+      isAur: false
+
+  spotify:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: spotify-snapstore
+      isAur: true
 
   publish:
     runs-on: ubuntu-latest
-    needs: testing-aur
+    needs: [spotify, bitwarden, discord, vscodium]
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-        with:
-          ref: main
+      #- name: Checkout repo
+      #  uses: actions/checkout@v4
     
+      - name: Get script
+        run: |
+            wget https://raw.githubusercontent.com/spacefall/pacman-repo/main/create-db
+            chmod +x ./create-db
+
       - name: Get packages
         uses: actions/download-artifact@v3
         with:
@@ -74,4 +72,8 @@ jobs:
   #    package: lolcat
   #    isAur: false
       
-
+  #testing-aur:
+  #uses: ./.github/workflows/builder.yaml
+  #with:
+  #  package: c-lolcat
+  #  isAur: true
