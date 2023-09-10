@@ -58,14 +58,7 @@ jobs:
 
       # from https://github.com/fwcd/arch-repo/blob/main/.github/workflows/build.yml
       - name: Build package database
-        run: >
-          docker run
-          --rm
-          --user "$(id -u):$(id -g)"
-          --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}"
-          --workdir "/src/${{ github.repository }}"
-          docker.io/martynas/archlinux:latest
-           ./create-db
+        run: docker run --rm --user "$(id -u):$(id -g)" --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}" --workdir "/src/${{ github.repository }}" ghcr.io/fwcd/archlinux ./create-db
            
       - name: Publish release
         if: github.ref == 'refs/heads/main'
