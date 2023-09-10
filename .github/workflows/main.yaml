@@ -2,7 +2,9 @@ name: Update Packages
 on:
   schedule:
     - cron: "0 0 * * 0,4"
-  push:
+  push: 
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
