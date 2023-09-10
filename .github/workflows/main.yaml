@@ -60,7 +60,7 @@ jobs:
           --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}"
           --workdir "/src/${{ github.repository }}"
           ghcr.io/fwcd/archlinux
-           "/src/${{ github.repository }}/create-db"
+           ./create-db
            
       - name: Publish release
         if: github.ref == 'refs/heads/main'
