@@ -41,8 +41,10 @@ jobs:
 
       - name: Unzip artifacts
         run: |
+            sudo apt-get install -y tree
             mkdir repo
             cd built-pkgs/
+            tree
             mv */*.zip .
             unzip \*.zip
             mv *.pkg.tar.zst ../repo/
