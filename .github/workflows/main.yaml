@@ -1,7 +1,7 @@
 name: Update Packages
 on:
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 0 * * 0,4"
   push:
   workflow_dispatch:
 
@@ -12,12 +12,17 @@ jobs:
   #    package: vscodium-electron
   #    isAur: true
 
-  discord:
+  #discord:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: vencord-desktop-git
+  #    isAur: true
+  testing-aur:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: vencord-desktop-git
+      package: c-lolcat
       isAur: true
-
+  
   #bitwarden:
   #  uses: ./.github/workflows/builder.yaml
   #  with:
@@ -32,7 +37,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: discord
+    needs: testing-aur
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -44,7 +49,7 @@ jobs:
         with:
           path: built-pkgs/
 
-      - name: Unzip artifacts
+      - name: Moving arteifacts
         run: |
             mkdir repo
             cd built-pkgs/
@@ -59,7 +64,7 @@ jobs:
           --user "$(id -u):$(id -g)"
           --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}"
           --workdir "/src/${{ github.repository }}"
-          ghcr.io/fwcd/archlinux
+          docker.io/martynas/archlinux:latest
            ./create-db
            
       - name: Publish release
@@ -78,8 +83,4 @@ jobs:
   #    package: lolcat
   #    isAur: false
       
-  #testing-aur:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: c-lolcat
-  #    isAur: true
+
