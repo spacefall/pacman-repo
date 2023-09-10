@@ -34,6 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: discord
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          ref: main
+    
       - name: Get packages
         uses: actions/download-artifact@v3
         with:
@@ -43,7 +48,6 @@ jobs:
         run: |
             mkdir repo
             cd built-pkgs/
-            tree
             mv */*.pkg.tar.zst ../repo/
             cd ..
 
