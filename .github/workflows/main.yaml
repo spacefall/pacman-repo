@@ -2,6 +2,7 @@ name: Update Packages
 on:
   schedule:
     - cron: "0 0 * * 0"
+  push:
   workflow_dispatch:
 
 jobs:
@@ -42,7 +43,7 @@ jobs:
         run: |
             mkdir repo
             cd built-pkgs/
-            mv *.zip .
+            mv */*.zip .
             unzip \*.zip
             mv *.pkg.tar.zst ../repo/
             cd ..
