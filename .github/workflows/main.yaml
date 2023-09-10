@@ -42,6 +42,7 @@ jobs:
         run: |
             mkdir repo
             cd built-pkgs/
+            mv *.zip .
             unzip \*.zip
             mv *.pkg.tar.zst ../repo/
             cd ..
