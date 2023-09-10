@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#modified from: https://github.com/fwcd/arch-repo/blob/main/build-db
+
+set -e
+cd "$(dirname "$0")"
+
+echo "==> Setting up a package database"
+repo-add "spacefall.db.tar.gz" *.pkg.tar.*
+
+echo "==> Replacing symlinks"
+(
+  cd "$dbdir"
+  for file in *.db *.files; do
+    cp --remove-destination "$(readlink "$file")" "$file"
+  done
+)
