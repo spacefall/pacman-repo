@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#modified from: https://github.com/fwcd/arch-repo/blob/main/build-db
-
 set -e
 cd "$(dirname "$0")"
 
+dbdir="$PWD/repo"
+
 echo "==> Setting up a package database"
-repo-add "spacefall.db.tar.gz" *.pkg.tar.*
+repo-add "$dbdir/spacefox.db.tar.gz" "$dbdir"/*.pkg.tar.*
 
 echo "==> Replacing symlinks"
 (
