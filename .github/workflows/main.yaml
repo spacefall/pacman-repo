@@ -41,13 +41,10 @@ jobs:
 
       - name: Unzip artifacts
         run: |
-            sudo apt-get install -y tree
             mkdir repo
             cd built-pkgs/
             tree
-            mv */*.zip .
-            unzip \*.zip
-            mv *.pkg.tar.zst ../repo/
+            mv */*.pkg.tar.zst ../repo/
             cd ..
 
       # from https://github.com/fwcd/arch-repo/blob/main/.github/workflows/build.yml
