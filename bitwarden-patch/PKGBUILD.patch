@@ -1,0 +1,11 @@
+--- PKGBUILD	2023-08-30 20:51:49.421418656 +0200
++++ PKGBUILD.mod	2023-08-30 21:01:03.462691000 +0200
+@@ -4,7 +4,7 @@
+ pkgname=bitwarden
+ pkgver=2023.7.1
+ pkgrel=1
+-_electronversion=24
++_electronversion=
+ pkgdesc='A secure and free password manager for all of your devices'
+ arch=('x86_64')
+ url='https://github.com/bitwarden/clients/tree/master/apps/desktop'
