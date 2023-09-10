@@ -5,11 +5,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  vscodium:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: vscodium-electron
-      isAur: true
+  #vscodium:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: vscodium-electron
+  #    isAur: true
 
   discord:
     uses: ./.github/workflows/builder.yaml
@@ -17,17 +17,55 @@ jobs:
       package: vencord-desktop-git
       isAur: true
 
-  bitwarden:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: bitwarden
-      isAur: false
+  #bitwarden:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: bitwarden
+  #    isAur: false
 
-  spotify:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: spotify-snapstore
-      isAur: true
+  #spotify:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: spotify-snapstore
+  #    isAur: true
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: discord
+    steps:
+      - name: Get packages
+        uses: actions/download-artifact@v3
+        with:
+          path: built-pkgs/
+
+      - name: Unzip artifacts
+        run: |
+            mkdir repo
+            cd built-pkgs/
+            unzip \*.zip
+            mv *.pkg.tar.zst ../repo/
+            cd ..
+
+      # from https://github.com/fwcd/arch-repo/blob/main/.github/workflows/build.yml
+      - name: Build package database
+        run: >
+          docker run
+          --rm
+          --user "$(id -u):$(id -g)"
+          --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}"
+          --workdir "/src/${{ github.repository }}"
+          ghcr.io/fwcd/archlinux
+          ./create-db
+
+      - name: Publish release
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="$(date '+%Y-%m-%d-%H-%M')"
+          gh release create --title "$tag" "$tag" || true
+          gh release upload --clobber "$tag" repo/*
+    
   
   #testing-archrepo:
   #  uses: ./.github/workflows/builder.yaml
