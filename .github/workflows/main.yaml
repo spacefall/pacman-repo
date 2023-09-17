@@ -1,7 +1,10 @@
 name: Update Packages
+concurrency:
+  group: build
+  cancel-in-progress: true
 on:
   schedule:
-    - cron: "0 0 * * 0,4"
+    - cron: "0 0 * * 1,3,5"
   push: 
     branches:
       - main
@@ -41,6 +44,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: [spotify, bitwarden, discord, vscodium, prismlauncher]
+    if: always() && !cancelled()
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
