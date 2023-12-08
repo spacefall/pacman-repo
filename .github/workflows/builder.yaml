@@ -28,7 +28,7 @@ jobs:
       - name: Patch sources
         run: |
             cd ${{inputs.package}}
-            [ -f "../${{inputs.package}}-patch/PKGBUILD.patch" ] && cp ../${{inputs.package}}-patch/* . && do patch -u < PKGBUILD.patch || echo "No patches to apply"
+            [ -f "../${{inputs.package}}-patch/PKGBUILD.patch" ] && cp ../${{inputs.package}}-patch/* . && patch -u < PKGBUILD.patch || echo "No patches to apply"
             [ -f ".SRCINFO" ] && echo "Deleting .SRCINFO" && rm -f .SRCINFO || echo ".SRCINFO isn't present"
 
       - name: Build package
