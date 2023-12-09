@@ -1,0 +1,11 @@
+--- PKGBUILD.orig	2023-12-09 13:56:58.945129409 +0100
++++ PKGBUILD	2023-12-09 13:57:29.403948744 +0100
+@@ -19,7 +19,7 @@
+ # Create an exec file
+   echo -e "export ELECTRON_IS_DEV=0\n\
+ cd /usr/lib/upscayl\n\
+-exec electron /usr/lib/upscayl/app.asar \$@" > upscayl
++exec electron-bin /usr/lib/upscayl/app.asar \$@" > upscayl
+ # Edit the shortcut
+   mv usr/share/applications/upscayl.desktop "$srcdir"
+   sed -i -E "s|Exec=/opt/Upscayl/upscayl %U|Exec=upscayl %U|g" upscayl.desktop
