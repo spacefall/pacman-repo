@@ -1,0 +1,19 @@
+--- PKGBUILD.orig	2023-12-09 12:48:34.467106971 +0100
++++ PKGBUILD	2023-12-09 13:31:40.342938600 +0100
+@@ -2,7 +2,7 @@
+ pkgname=authy-electron
+ pkgver=2.4.2
+ pkgrel=1
+-_electronversion=25
++_electronversion=-bin
+ pkgdesc="Two factor authentication desktop application"
+ arch=('x86_64')
+ url="https://authy.com"
+@@ -20,6 +20,7 @@
+ 
+ prepare() {
+   unsquashfs -f -d "authy-$pkgver" "authy-$pkgver-${_snaprev}.snap"
++  sed -i 's/electron25/electron-bin/g' authy.sh 
+ 
+   cd "authy-$pkgver"
+   sed -i 's|${SNAP}/meta/gui/icon.png|authy|g' "meta/gui/authy.desktop"
