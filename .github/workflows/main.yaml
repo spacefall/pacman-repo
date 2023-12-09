@@ -97,9 +97,15 @@ jobs:
       package: upscayl-rpm-bin
       isAur: true
 
+  code-translucent:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: code-translucent
+      isAur: true
+
   publish:
     runs-on: ubuntu-latest
-    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, electron, electron-pkg]
+    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, electron, electron-pkg, code-translucent]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo
