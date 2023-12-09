@@ -11,12 +11,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  vscodium:
+  vscode:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: vscodium-electron
+      package: visual-studio-code-bin
       isAur: true
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
   
   authy:
     uses: ./.github/workflows/builder.yaml
@@ -106,7 +106,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, electron, electron-pkg, vscodium]
+    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, electron, electron-pkg, vscode]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo
