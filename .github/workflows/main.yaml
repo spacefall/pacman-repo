@@ -118,13 +118,20 @@ jobs:
           path: built-pkgs/
 
       # from https://github.com/fwcd/arch-repo/blob/main/.github/workflows/build.yml
-      - name: Build package database
+      - name: Preparing package database
         run: |
             mkdir repo
             cd built-pkgs/
             mv */*.pkg.tar.zst ../repo/
             cd ..
-            docker run --rm --user "$(id -u):$(id -g)" --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}" --workdir "/src/${{ github.repository }}" ghcr.io/fwcd/archlinux ./create-db
+
+#docker run --rm --user "$(id -u):$(id -g)" --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}" --workdir "/src/${{ github.repository }}" ghcr.io/fwcd/archlinux ./create-db
+      
+      - name: Building package database
+        uses: spacefall/actions-makepkg@pkg-db
+        with:
+          dir: repo/
+          reponame: spacefall
 
       - name: Publish release
         if: github.ref == 'refs/heads/main'
