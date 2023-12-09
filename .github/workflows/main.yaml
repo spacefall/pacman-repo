@@ -16,36 +16,42 @@ jobs:
     with:
       package: vscodium-electron
       isAur: true
+      skipRuntimeDeps: false
   
   authy:
     uses: ./.github/workflows/builder.yaml
     with:
       package: authy-electron
       isAur: true
+      skipRuntimeDeps: true
   
   electron:
     uses: ./.github/workflows/builder.yaml
     with:
       package: electron-bin
       isAur: true
+      skipRuntimeDeps: true
     
   electron-pkg:
     uses: ./.github/workflows/builder.yaml
     with:
       package: electron27-bin
       isAur: true
+      skipRuntimeDeps: true
 
   vesktop:
     uses: ./.github/workflows/builder.yaml
     with:
       package: vencord-desktop-git
       isAur: true
+      skipRuntimeDeps: true
 
   bitwarden:
     uses: ./.github/workflows/builder.yaml
     with:
       package: bitwarden
       isAur: false
+      skipRuntimeDeps: false
 
   # Non electron packages ----------------------------
   
@@ -54,42 +60,49 @@ jobs:
     with:
       package: brave-bin
       isAur: true
+      skipRuntimeDeps: true
 
   spotify:
     uses: ./.github/workflows/builder.yaml
     with:
       package: spotify-snapstore
       isAur: true
+      skipRuntimeDeps: false
   
   prismlauncher:
     uses: ./.github/workflows/builder.yaml
     with:
       package: prismlauncher
       isAur: true
+      skipRuntimeDeps: false
 
   spicetify:
     uses: ./.github/workflows/builder.yaml
     with:
       package: spicetify-cli-git
       isAur: true
+      skipRuntimeDeps: true
 
   spicetify-marketplace:
     uses: ./.github/workflows/builder.yaml
     with:
       package: spicetify-marketplace-bin
       isAur: true
+      skipRuntimeDeps: true
   
   freefilesync:
     uses: ./.github/workflows/builder.yaml
     with:
       package: freefilesync-bin
       isAur: true
+      skipRuntimeDeps: true
 
   upscayl:
     uses: ./.github/workflows/builder.yaml
     with:
       package: upscayl-rpm-bin
       isAur: true
+      skipRuntimeDeps: true
 
   publish:
     runs-on: ubuntu-latest

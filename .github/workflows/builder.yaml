@@ -9,6 +9,9 @@ on:
       isAur:
         required: true
         type: boolean
+      skipRuntimeDeps:
+        required: true
+        type: boolean
 
 jobs:
   build:
@@ -38,6 +41,7 @@ jobs:
           command: "echo $'[spacefall]\nSigLevel = Never\nServer = https://github.com/spacefall/pacman-repo/releases/latest/download' | sudo tee -a /etc/pacman.conf && sudo pacman -Sy"
           march: x86-64-v3
           mtune: skylake
+          skipruntimedeps: ${{inputs.skipRuntimeDeps}}
 
       - name: Upload package
         uses: actions/upload-artifact@v3
