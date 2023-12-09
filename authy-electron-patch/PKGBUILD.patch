@@ -1,5 +1,5 @@
---- PKGBUILD.orig	2023-12-09 12:48:34.467106971 +0100
-+++ PKGBUILD	2023-12-09 13:47:42.371463580 +0100
+--- PKGBUILD.orig	2023-12-09 19:20:08.301070302 +0100
++++ PKGBUILD	2023-12-09 19:20:50.878057646 +0100
 @@ -2,7 +2,7 @@
  pkgname=authy-electron
  pkgver=2.4.2
@@ -9,21 +9,12 @@
  pkgdesc="Two factor authentication desktop application"
  arch=('x86_64')
  url="https://authy.com"
-@@ -14,12 +14,15 @@
- _snapid='H8ZpNgIoPyvmkgxOWw5MSzsXK1wRZiHn'
- _snaprev='22'
+@@ -16,7 +16,7 @@
  source=("authy-$pkgver-${_snaprev}.snap::https://api.snapcraft.io/api/v1/snaps/download/${_snapid}_${_snaprev}.snap"
--        "authy.sh")
-+        "authy.sh"
-+        "authy.sh.patch")
+         "authy.sh")
  sha256sums=('406bde28157122272c1a192ab3e953ee50c3204260a1e5dfe3d71c89d18ae115'
 -            'c76a44a0b42b7b590c4b6318b0544cedb96ef76b92269a79d29f71ced5c74331')
-+            'c76a44a0b42b7b590c4b6318b0544cedb96ef76b92269a79d29f71ced5c74331'
-+            '937ae170516aa2cc23facddf39cbf0efe6492870744317286d1a6644e032a068')
++            'd8b4f4bad5612487125606b6f5374c7ee981e15f29d662d8301d32a3c4ee1569')
  
  prepare() {
    unsquashfs -f -d "authy-$pkgver" "authy-$pkgver-${_snaprev}.snap"
-+  patch -u < "$srcdir"/authy.sh.patch
- 
-   cd "authy-$pkgver"
-   sed -i 's|${SNAP}/meta/gui/icon.png|authy|g' "meta/gui/authy.desktop"
