@@ -7,7 +7,7 @@
 +
 +package() {
 +	mkdir -p "$pkgdir/usr/bin" "$pkgdir/usr/lib"
-+	ln -sf "${depends[0]}" "$pkgdir/usr/bin/$pkgname"
-+	ln -sf "${depends[0]}" "$pkgdir/usr/lib/$pkgname"
++	ln -sf "${_pkgname}${_major}" "$pkgdir/usr/bin/$pkgname"
++	ln -sf "${_pkgname}${_major}" "$pkgdir/usr/lib/$pkgname"
 +}
 \ No newline at end of file
