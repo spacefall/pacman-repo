@@ -23,6 +23,12 @@ jobs:
       package: authy-electron
       isAur: true
   
+  electron:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: electron-bin
+      isAur: true
+
   vscode:
     uses: ./.github/workflows/builder.yaml
     with:
