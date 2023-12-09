@@ -35,6 +35,7 @@ jobs:
         uses: spacefall/actions-makepkg@main
         with:
           dir: ${{inputs.package}}/
+          command: "sudo echo $'[spacefall]\nSigLevel = Never\nServer = https://github.com/spacefall/pacman-repo/releases/latest/download' >> /etc/pacman.conf && pacman -Sy"
           march: x86-64-v3
           mtune: skylake
 
