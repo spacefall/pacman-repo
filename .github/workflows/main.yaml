@@ -58,7 +58,7 @@ jobs:
   brave:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: brave-bin
+      package: brave-nightly-bin
       isAur: true
       skipRuntimeDeps: true
 
