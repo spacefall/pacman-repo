@@ -17,6 +17,13 @@ jobs:
       package: visual-studio-code-bin
       isAur: true
       skipRuntimeDeps: true
+
+  naps2:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: naps2-bin
+      isAur: true
+      skipRuntimeDeps: true
   
   authy:
     uses: ./.github/workflows/builder.yaml
