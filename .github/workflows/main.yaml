@@ -58,6 +58,13 @@ jobs:
       isAur: true
       skipRuntimeDeps: true
 
+  gradience:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: gradience-git
+      isAur: true
+      skipRuntimeDeps: true
+
   # Repacks ------------------------------------------
 
   upscayl:
@@ -120,7 +127,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, electron, electron-pkg, vscode, naps2]
+    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, electron, electron-pkg, vscode, naps2, gradience]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo

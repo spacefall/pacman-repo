@@ -30,6 +30,7 @@ This section is divided in Electron (for recompiled packages using electron27-bi
 - spicetify-cli-git
 - prismlauncher
 - electron-bin (becomes a syslink to electron27-bin, enables me to change version without editing every package)
+- gradience-git
 
 #### Electron
 
