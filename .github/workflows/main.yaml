@@ -124,9 +124,7 @@ jobs:
             cd built-pkgs/
             mv */*.pkg.tar.zst ../repo/
             cd ..
-
-#docker run --rm --user "$(id -u):$(id -g)" --mount type=bind,src="$PWD",dst="/src/${{ github.repository }}" --workdir "/src/${{ github.repository }}" ghcr.io/fwcd/archlinux ./create-db
-      
+            
       - name: Building package database
         uses: spacefall/actions-makepkg@pkg-db
         with:
