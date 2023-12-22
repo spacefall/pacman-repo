@@ -63,14 +63,14 @@ jobs:
     with:
       package: gradience-git
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   extension-manager:
     uses: ./.github/workflows/builder.yaml
     with:
       package: extension-manager-git 
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   # Repacks ------------------------------------------
 
