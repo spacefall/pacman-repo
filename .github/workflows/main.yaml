@@ -112,7 +112,7 @@ jobs:
   electron-pkg:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: electron27-bin
+      package: electron28-bin
       isAur: true
       skipRuntimeDeps: true
 
