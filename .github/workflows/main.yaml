@@ -14,12 +14,12 @@ jobs:
   
   # Builds - Electron ----------------------------
   
-  bitwarden:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: bitwarden
-      isAur: false
-      skipRuntimeDeps: false
+  #bitwarden:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: bitwarden
+  #    isAur: false
+  #    skipRuntimeDeps: false
 
   vesktop:
     uses: ./.github/workflows/builder.yaml
@@ -134,7 +134,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, vscode, naps2, gradience, extension-manager]
+    needs: [spotify, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, vscode, naps2, gradience, extension-manager]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo
