@@ -1,5 +1,14 @@
 --- PKGBUILD.orig	2024-01-07 21:33:45.678177175 +0100
-+++ PKGBUILD	2024-01-07 21:36:49.349075631 +0100
++++ PKGBUILD	2024-01-07 21:45:48.759183618 +0100
+@@ -8,7 +8,7 @@
+ url="https://github.com/Vencord/Vesktop"
+ license=('GPL')
+ 
+-depends=()
++depends=("electron")
+ makedepends=("pnpm" "git")
+ optdepends=(
+   'libnotify: Notifications'
 @@ -18,10 +18,12 @@
  provides=("vencord")
  conflicts=("vencord")
@@ -10,7 +19,7 @@
  sha256sums=('SKIP'
 -            'fe8babc250a5cac14dcf55a0e97dfa175414373a57274260fea46d053065adf2')
 +            'fe8babc250a5cac14dcf55a0e97dfa175414373a57274260fea46d053065adf2'
-+            '1c5b6afee7ff71d319fbc9fc64461379e055ea7fbbfb977da927ff5867063eeb'
++            'c0ced11fca2c1aed8691a45c50cb5550b75e21cb9cb3e38d1b7135ab91d8eca1'
 +            '2fbdc76bfe550242ed7dd16fa6aafabc49f6b460b034dbbb5b4836809b0b0f05')
  
  pkgver() {

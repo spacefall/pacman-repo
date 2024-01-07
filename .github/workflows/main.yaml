@@ -51,12 +51,12 @@ jobs:
       isAur: true
       skipRuntimeDeps: false
 
-  electron:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: electron-bin
-      isAur: true
-      skipRuntimeDeps: true
+  #electron:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: electron-bin
+  #    isAur: true
+  #    skipRuntimeDeps: true
 
   gradience:
     uses: ./.github/workflows/builder.yaml
@@ -109,12 +109,12 @@ jobs:
       isAur: true
       skipRuntimeDeps: true
 
-  electron-pkg:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: electron28-bin
-      isAur: true
-      skipRuntimeDeps: true
+  #electron-pkg:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: electron28-bin
+  #    isAur: true
+  #    skipRuntimeDeps: true
 
   spotify:
     uses: ./.github/workflows/builder.yaml
@@ -134,7 +134,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, electron, electron-pkg, vscode, naps2, gradience, extension-manager]
+    needs: [spotify, bitwarden, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, vscode, naps2, gradience, extension-manager]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo
