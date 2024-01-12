@@ -1,0 +1,11 @@
+--- PKGBUILD.orig	2024-01-12 21:22:36.777656091 +0100
++++ PKGBUILD	2024-01-12 21:23:01.216345500 +0100
+@@ -4,7 +4,7 @@
+ pkgname=bitwarden
+ pkgver=2024.1.0
+ pkgrel=1
+-_electronversion=27
++_electronversion=28
+ pkgdesc='A secure and free password manager for all of your devices'
+ arch=('x86_64')
+ url='https://github.com/bitwarden/clients/tree/master/apps/desktop'
