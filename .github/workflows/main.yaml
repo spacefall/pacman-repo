@@ -137,7 +137,7 @@ jobs:
     with:
       package: python-libsass
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
       
   # ---------------------------------------------
 
