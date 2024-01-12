@@ -130,11 +130,20 @@ jobs:
       isAur: true
       skipRuntimeDeps: true
     
+  # Deps ---------------------------------------------
+
+  python-libsass:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: python-libsass
+      isAur: true
+      skipRuntimeDeps: true
+      
   # ---------------------------------------------
 
   publish:
     runs-on: ubuntu-latest
-    needs: [spotify, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, vscode, naps2, gradience, extension-manager, bitwarden]
+    needs: [python-libsass, spotify, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, vscode, naps2, gradience, extension-manager, bitwarden]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo

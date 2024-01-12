@@ -29,3 +29,12 @@ These are aur packages that are compiled using lto (where possible), O2 and the 
 - extension-manager-git 
 - vencord-desktop-git
 - authy-electron
+- bitwarden
+
+
+### Dependencies
+
+These are deps for other packages from this repo
+
+- python-libsass
+
