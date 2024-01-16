@@ -17,8 +17,8 @@
 +source=("$pkgname::git+$url.git" "vesktop.desktop" "vesktop.sh" "package.json.patch")
  
  sha256sums=('SKIP'
--            'fe8babc250a5cac14dcf55a0e97dfa175414373a57274260fea46d053065adf2')
-+            'fe8babc250a5cac14dcf55a0e97dfa175414373a57274260fea46d053065adf2'
+-            '1711ebb0e8e413705cf662daf86c5ddfe25521dcc60f3781e624abcf40033ebf')
++            '1711ebb0e8e413705cf662daf86c5ddfe25521dcc60f3781e624abcf40033ebf'
 +            'c0ced11fca2c1aed8691a45c50cb5550b75e21cb9cb3e38d1b7135ab91d8eca1'
 +            '2fbdc76bfe550242ed7dd16fa6aafabc49f6b460b034dbbb5b4836809b0b0f05')
  
