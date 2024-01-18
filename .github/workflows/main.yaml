@@ -138,12 +138,26 @@ jobs:
       package: python-libsass
       isAur: true
       skipRuntimeDeps: false
+
+  python-cssutils:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: python-cssutils
+      isAur: true
+      skipRuntimeDeps: false
+
+  python-material-color-utilities:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: python-material-color-utilities
+      isAur: true
+      skipRuntimeDeps: false
       
   # ---------------------------------------------
 
   publish:
     runs-on: ubuntu-latest
-    needs: [python-libsass, spotify, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, vscode, naps2, gradience, extension-manager, bitwarden]
+    needs: [python-material-color-utilities, python-cssutils, python-libsass, spotify, vesktop, prismlauncher, authy, brave, spicetify, spicetify-marketplace, freefilesync, upscayl, vscode, naps2, gradience, extension-manager, bitwarden]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo
