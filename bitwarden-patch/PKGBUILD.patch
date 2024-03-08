@@ -5,7 +5,7 @@
  pkgver=2024.1.0
  pkgrel=1
 -_electronversion=27
-+_electronversion=
++_electronversion=29
  pkgdesc='A secure and free password manager for all of your devices'
  arch=('x86_64')
  url='https://github.com/bitwarden/clients/tree/master/apps/desktop'
