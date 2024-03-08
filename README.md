@@ -7,34 +7,19 @@ You shouldn't use this, and you probably can't because the packages are built wi
 
 ## Current packages
 
-### Repacks
-
-These are aur *-bin packages repackaged for arch
-
-- upscayl-rpm-bin
-- freefilesync-bin
-- spicetify-marketplace-bin
-- brave-nightly-bin
-- visual-studio-code-bin
-- spotify-snapstore
-- naps2-bin
-
 ### Builds
 
-These are aur packages that are compiled using lto (where possible), O2 and the flags for -march=native on my pc  
+These are aur packages that are compiled using lto (where possible), O2 and -march=skylake
 
-- spicetify-cli-git
 - prismlauncher
 - gradience-git
-- extension-manager-git 
 - vencord-desktop-git
-- authy-electron
 - bitwarden
-
 
 ### Dependencies
 
 These are deps for other packages from this repo
 
 - python-libsass
-
+- python-cssutils
+- python-material-color-utilities
