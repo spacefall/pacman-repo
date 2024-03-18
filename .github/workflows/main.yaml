@@ -19,7 +19,7 @@ jobs:
     with:
       package: bitwarden
       isAur: false
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
 
   vesktop:
     uses: ./.github/workflows/builder.yaml
@@ -27,22 +27,8 @@ jobs:
       package: vencord-desktop-git
       isAur: true
       skipRuntimeDeps: true
-
-  #authy:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: authy-electron
-  #    isAur: true
-  #    skipRuntimeDeps: true
       
   # Builds - Normal ----------------------------
-  
-  #spicetify:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: spicetify-cli-git
-  #    isAur: true
-  #    skipRuntimeDeps: true
 
   prismlauncher:
     uses: ./.github/workflows/builder.yaml
@@ -51,85 +37,20 @@ jobs:
       isAur: true
       skipRuntimeDeps: false
 
-  #electron:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: electron-bin
-  #    isAur: true
-  #    skipRuntimeDeps: true
-
   gradience:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gradience-git
       isAur: true
       skipRuntimeDeps: false
-
-  #extension-manager:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: extension-manager
-  #    isAur: true
-  #    skipRuntimeDeps: false
-
-  # Repacks ------------------------------------------
-
-  #upscayl:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: upscayl-rpm-bin
-  #    isAur: true
-  #    skipRuntimeDeps: true
-
-  #freefilesync:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: freefilesync-bin
-  #    isAur: true
-  #    skipRuntimeDeps: true
   
-  #spicetify-marketplace:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: spicetify-marketplace-bin
-  #    isAur: true
-  #    skipRuntimeDeps: true
+  blackbox:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: blackbox-terminal
+      isAur: true
+      skipRuntimeDeps: true
 
-  # brave:
-  #   uses: ./.github/workflows/builder.yaml
-  #   with:
-  #     package: brave-nightly-bin
-  #     isAur: true
-  #     skipRuntimeDeps: true
-  
-  #vscode:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: visual-studio-code-bin
-  #    isAur: true
-  #    skipRuntimeDeps: true
-
-  #electron-pkg:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: electron28-bin
-  #    isAur: true
-  #    skipRuntimeDeps: true
-
-  #spotify:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: spotify-snapstore
-  #    isAur: true
-  #    skipRuntimeDeps: false
-
-  #naps2:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: naps2-bin
-  #    isAur: true
-  #    skipRuntimeDeps: true
-    
   # Deps ---------------------------------------------
 
   python-libsass:
@@ -144,20 +65,27 @@ jobs:
     with:
       package: python-cssutils
       isAur: true
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
 
   python-material-color-utilities:
     uses: ./.github/workflows/builder.yaml
     with:
       package: python-material-color-utilities
       isAur: true
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
+
+  libpqmarble:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: libpqmarble
+      isAur: true
+      skipRuntimeDeps: true
       
   # ---------------------------------------------
 
   publish:
     runs-on: ubuntu-latest
-    needs: [python-material-color-utilities, python-cssutils, python-libsass, vesktop, prismlauncher, gradience, bitwarden]
+    needs: [python-material-color-utilities, python-cssutils, python-libsass, vesktop, prismlauncher, gradience, bitwarden, libpqmarble, blackbox]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo
