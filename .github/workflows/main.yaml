@@ -19,7 +19,7 @@ jobs:
     with:
       package: bitwarden
       isAur: false
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   vesktop:
     uses: ./.github/workflows/builder.yaml
@@ -49,7 +49,7 @@ jobs:
     with:
       package: blackbox-terminal
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   # Deps ---------------------------------------------
 
@@ -79,7 +79,7 @@ jobs:
     with:
       package: libpqmarble
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
       
   # ---------------------------------------------
 
