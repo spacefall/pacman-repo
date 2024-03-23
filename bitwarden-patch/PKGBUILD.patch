@@ -1,5 +1,5 @@
---- PKGBUILD.orig	2024-03-23 22:39:25.522538741 +0100
-+++ PKGBUILD	2024-03-23 22:40:19.584954741 +0100
+--- PKGBUILD.orig   2024-03-23 22:39:25.522538741 +0100
++++ PKGBUILD    2024-03-23 23:00:00.843333702 +0100
 @@ -4,7 +4,8 @@
  pkgname=bitwarden
  pkgver=2024.3.0
@@ -10,3 +10,12 @@
  pkgdesc='A secure and free password manager for all of your devices'
  arch=('x86_64')
  url='https://github.com/bitwarden/clients/tree/master/apps/desktop'
+@@ -23,6 +24,8 @@
+             'fdc047aadc1cb947209d7ae999d8a7f5f10ae46bf71687080bc13bc3082cc5166bbbe88c8f506b78adb5d772f5366ec671b04a2f761e7d7f249ebe5726681e30')
+ 
+ prepare() {
++   _fullelectronver=$(electron -v)
++   _electronversion=${_fullelectronver:1:2}
+    cd bitwarden/apps/desktop
+ 
+    export npm_config_build_from_source=true
