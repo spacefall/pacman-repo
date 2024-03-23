@@ -51,6 +51,50 @@ jobs:
       isAur: true
       skipRuntimeDeps: false
 
+  opentabletdriver:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: opentabletdriver
+      isAur: true
+      skipRuntimeDeps: true
+    
+  # Repacks ---------------------------------------
+
+  davinci-resolve:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: davinci-resolve-studio
+      isAur: true
+      skipRuntimeDeps: true
+
+  spicetify:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: spicetify-cli-git
+      isAur: true
+      skipRuntimeDeps: true
+
+  spicetify-marketplace:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: spicetify-marketplace-bin
+      isAur: true
+      skipRuntimeDeps: true
+
+  waterfox:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: waterfox
+      isAur: true
+      skipRuntimeDeps: true
+      
+  betterbird:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: betterbird-it-bin
+      isAur: true
+      skipRuntimeDeps: true
+
   # Deps ---------------------------------------------
 
   python-libsass:
@@ -85,7 +129,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    needs: [python-material-color-utilities, python-cssutils, python-libsass, vesktop, prismlauncher, gradience, bitwarden, libpqmarble, blackbox]
+    needs: [betterbird, waterfox, spicetify-marketplace, opentabletdriver, davinci-resolve, spicetify, python-material-color-utilities, python-cssutils, python-libsass, vesktop, prismlauncher, gradience, bitwarden, libpqmarble, blackbox]
     if: always() && !cancelled()
     steps:
       - name: Checkout repo
