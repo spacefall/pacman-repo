@@ -86,7 +86,7 @@ jobs:
     with:
       package: betterbird-it-bin
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   # Deps ---------------------------------------------
 

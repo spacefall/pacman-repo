@@ -1,5 +1,5 @@
 --- PKGBUILD.orig	2024-03-23 21:41:06.174334928 +0100
-+++ PKGBUILD	2024-03-23 22:46:26.884819841 +0100
++++ PKGBUILD	2024-03-23 22:57:51.680141363 +0100
 @@ -7,7 +7,7 @@
  # Contributor: Jakub Schmidtke <sjakub@gmail.com>
  
@@ -9,15 +9,18 @@
  pkgrel=1
  pkgdesc="Fork of Mozilla Firefox featuring some privacy, usability, and speed enhancements."
  arch=(x86_64)
-@@ -22,6 +22,7 @@
+@@ -20,8 +20,10 @@
+ 	dbus-glib
+ 	nss
  	ttf-font
++	libpulse
  )
  makedepends=(
 +	jq
  	cbindgen
  	clang
  	diffutils
-@@ -60,7 +61,7 @@
+@@ -60,7 +62,7 @@
  	$pkgname.desktop
  )
  b2sums=(
