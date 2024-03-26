@@ -1,5 +1,13 @@
 --- PKGBUILD.orig	2024-03-26 17:26:14.526321427 +0100
-+++ PKGBUILD	2024-03-26 17:27:58.671192063 +0100
++++ PKGBUILD	2024-03-26 23:08:22.056804060 +0100
+@@ -22,6 +22,7 @@
+ 	ttf-font
+ )
+ makedepends=(
++	libpulse
+ 	cbindgen
+ 	clang
+ 	diffutils
 @@ -61,7 +62,7 @@
  	"$pkgname.desktop"
  )
