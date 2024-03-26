@@ -79,7 +79,7 @@ jobs:
     with:
       package: waterfox
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
       
   betterbird:
     uses: ./.github/workflows/builder.yaml

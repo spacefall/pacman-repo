@@ -1,22 +1,5 @@
 --- PKGBUILD.orig	2024-03-26 17:26:14.526321427 +0100
 +++ PKGBUILD	2024-03-26 17:27:58.671192063 +0100
-@@ -7,7 +7,7 @@
- # Contributor: Jakub Schmidtke <sjakub@gmail.com>
- 
- pkgname=waterfox
--pkgver=G6.0.11
-+pkgver=$(curl -s 'https://api.github.com/repos/WaterfoxCo/Waterfox/releases/latest' | jq -r '.name')
- pkgrel=2
- pkgdesc='Fork of Mozilla Firefox featuring some privacy, usability, and speed enhancements.'
- arch=(x86_64)
-@@ -22,6 +22,7 @@
- 	ttf-font
- )
- makedepends=(
-+	jq
- 	cbindgen
- 	clang
- 	diffutils
 @@ -61,7 +62,7 @@
  	"$pkgname.desktop"
  )
