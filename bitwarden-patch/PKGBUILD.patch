@@ -1,21 +1,33 @@
---- PKGBUILD.orig   2024-03-23 22:39:25.522538741 +0100
-+++ PKGBUILD    2024-03-23 23:00:00.843333702 +0100
-@@ -4,7 +4,8 @@
+--- PKGBUILD.orig	2024-03-26 16:50:08.202332167 +0100
++++ PKGBUILD	2024-03-26 16:58:10.757123596 +0100
+@@ -4,7 +4,7 @@
  pkgname=bitwarden
  pkgver=2024.3.0
  pkgrel=1
 -_electronversion=28
-+_fullelectronver=$(electron -v)
-+_electronversion=${_fullelectronver:1:2}
++_electronversion=
  pkgdesc='A secure and free password manager for all of your devices'
  arch=('x86_64')
  url='https://github.com/bitwarden/clients/tree/master/apps/desktop'
-@@ -23,6 +24,8 @@
-             'fdc047aadc1cb947209d7ae999d8a7f5f10ae46bf71687080bc13bc3082cc5166bbbe88c8f506b78adb5d772f5366ec671b04a2f761e7d7f249ebe5726681e30')
+@@ -33,8 +33,8 @@
+ 	patch --strip=1 src/main/messaging.main.ts "$srcdir/messaging.main.ts.patch"
  
- prepare() {
-+   _fullelectronver=$(electron -v)
-+   _electronversion=${_fullelectronver:1:2}
-    cd bitwarden/apps/desktop
+ 	# Patch build to make it work with system electron
+-	export SYSTEM_ELECTRON_VERSION=$(electron$_electronversion -v | sed 's/v//g')
+-	export ELECTRONVERSION=$_electronversion
++	export SYSTEM_ELECTRON_VERSION=$(electron -v | sed 's/v//g')
++	export ELECTRONVERSION=
+ 	sed -i "s|@electronversion@|${ELECTRONVERSION}|" "$srcdir/bitwarden.sh"
+ 	# jq < package.json \
+ 	#    '.build["electronVersion"]=$ENV.SYSTEM_ELECTRON_VERSION | .build["electronDist"]="/usr/lib/electron\(env.ELECTRONVERSION)"' \
+@@ -47,8 +47,8 @@
  
-    export npm_config_build_from_source=true
+ build() {
+ 	cd bitwarden/apps/desktop
+-	electronDist=/usr/lib/electron$_electronversion
+-	electronVer=$(electron$_electronversion --version | tail -c +2)
++	electronDist=/usr/lib/electron
++	electronVer=$(electron --version | tail -c +2)
+ 	export npm_config_build_from_source=true
+ 	export npm_config_cache="$srcdir/npm_cache"
+ 	export ELECTRON_SKIP_BINARY_DOWNLOAD=1
