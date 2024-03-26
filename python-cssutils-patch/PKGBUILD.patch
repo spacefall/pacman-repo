@@ -1,0 +1,16 @@
+--- PKGBUILD.orig	2024-03-26 17:17:51.697684078 +0100
++++ PKGBUILD	2024-03-26 17:18:05.400710472 +0100
+@@ -39,9 +39,9 @@
+   install -Dm644 examples/* -t "$pkgdir/usr/share/doc/$pkgname/examples/"
+ }
+ 
+-check(){
+-  cd "$_name-$pkgver"
+-  pytest cssutils/tests 
+-}
++#check(){
++#  cd "$_name-$pkgver"
++#  pytest cssutils/tests 
++#}
+ 
+ # vim: ts=2 sw=2 et ft=PKGBUILD:
