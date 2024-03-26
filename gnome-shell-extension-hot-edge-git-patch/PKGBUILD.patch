@@ -1,0 +1,10 @@
+--- PKGBUILD.orig	2024-03-26 16:10:56.682248777 +0100
++++ PKGBUILD	2024-03-26 16:11:07.682201373 +0100
+@@ -25,6 +25,6 @@
+ package() {
+   cd "$pkgname"
+ 
+-  install -Dm644 -t "$pkgdir/usr/share/gnome-shell/extensions/hotedge@jonathan.jdoda.ca" extension.js logger.js metadata.json prefs.js stylesheet.css
++  install -Dm644 -t "$pkgdir/usr/share/gnome-shell/extensions/hotedge@jonathan.jdoda.ca" extension.js metadata.json prefs.js stylesheet.css
+   install -Dm644 -t "$pkgdir/usr/share/gnome-shell/extensions/hotedge@jonathan.jdoda.ca/schemas" schemas/org.gnome.shell.extensions.hotedge.gschema.xml schemas/gschemas.compiled
+ }
