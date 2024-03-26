@@ -139,14 +139,14 @@ jobs:
     with:
       package: gnome-shell-extension-blur-my-shell-git
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   caffeine:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-caffeine-git
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   appindicator:
     uses: ./.github/workflows/builder.yaml
@@ -167,21 +167,21 @@ jobs:
     with:
       package: gnome-shell-extension-just-perfection-desktop-git
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   panel-corners:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-panel-corners-git
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   qstweaks:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-quick-settings-tweaks-git
       isAur: true
-      skipRuntimeDeps: true
+      skipRuntimeDeps: false
 
   search-light:
     uses: ./.github/workflows/builder.yaml
