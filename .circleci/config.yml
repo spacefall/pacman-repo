@@ -15,14 +15,18 @@ commands:
       - when:
           condition:
             equals: [ true, <<parameters.isAur>> ]
-          name: Get PKGBUILD - AUR
-          run: git clone https://aur.archlinux.org/<<parameters.package>>.git
+          steps:
+            - run:
+                name: Get PKGBUILD - AUR
+                command: git clone https://aur.archlinux.org/<<parameters.package>>.git
 
       - when:
           condition:
             equals: [ false, <<parameters.isAur>> ]
-          name: Get PKGBUILD - Arch Gitlab
-          run: git clone https://gitlab.archlinux.org/archlinux/packaging/packages/<<parameters.package>>.git
+          steps:
+            - run:
+                name: Get PKGBUILD - Arch Gitlab
+                command: git clone https://gitlab.archlinux.org/archlinux/packaging/packages/<<parameters.package>>.git
       
       - run:
           name: Patch sources
@@ -79,3 +83,11 @@ jobs:
           package: linux-xanmod
           isAur: true
           skipRuntimeDeps: false
+
+workflows:
+  wf:
+    jobs:
+      - betterbird
+      - prismlauncher
+      - waterfox
+      - xanmod
