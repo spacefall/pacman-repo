@@ -24,7 +24,7 @@ jobs:
   vesktop:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: vencord-desktop-git
+      package: vencord_electron
       isAur: true
       skipRuntimeDeps: true
       
