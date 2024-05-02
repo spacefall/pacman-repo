@@ -46,7 +46,7 @@ commands:
 jobs:
   betterbird:
     machine:
-      image: ubuntu-2204
+      image: ubuntu-2204:current
     resource_class: medium
     steps:
       - build:
@@ -56,7 +56,7 @@ jobs:
 
   prismlauncher:
     machine:
-      image: ubuntu-2204
+      image: ubuntu-2204:current
     resource_class: large
     steps:
       - build:
@@ -66,8 +66,8 @@ jobs:
   
   waterfox:
     machine:
-      image: ubuntu-2204
-    resource_class: xlarge
+      image: ubuntu-2204:current
+    resource_class: large
     steps:
       - build:
           package: waterfox
@@ -76,8 +76,8 @@ jobs:
 
   xanmod:
     machine:
-      image: ubuntu-2204
-    resource_class: xlarge
+      image: ubuntu-2204:current
+    resource_class: large
     steps:
       - build:
           package: linux-xanmod
