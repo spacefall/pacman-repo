@@ -37,7 +37,6 @@ jobs:
     steps:
       - build:
           package: betterbird-it-bin
-          isAur: true
           skipRuntimeDeps: false
 
   prismlauncher:
@@ -47,7 +46,6 @@ jobs:
     steps:
       - build:
           package: prismlauncher
-          isAur: true
           skipRuntimeDeps: false
   
   waterfox:
@@ -57,7 +55,6 @@ jobs:
     steps:
       - build:
           package: waterfox
-          isAur: true
           skipRuntimeDeps: false
 
   xanmod:
@@ -67,7 +64,6 @@ jobs:
     steps:
       - build:
           package: linux-xanmod
-          isAur: true
           skipRuntimeDeps: false
 
 workflows:
