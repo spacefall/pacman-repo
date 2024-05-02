@@ -5,28 +5,14 @@ commands:
     parameters:
       package:
         type: string
-      isAur:
-        type: boolean
       skipRuntimeDeps:
         type: boolean
     steps:
       - checkout 
-
-      - when:
-          condition:
-            equals: [ true, <<parameters.isAur>> ]
-          steps:
-            - run:
-                name: Get PKGBUILD - AUR
-                command: git clone https://aur.archlinux.org/<<parameters.package>>.git
-
-      - when:
-          condition:
-            equals: [ false, <<parameters.isAur>> ]
-          steps:
-            - run:
-                name: Get PKGBUILD - Arch Gitlab
-                command: git clone https://gitlab.archlinux.org/archlinux/packaging/packages/<<parameters.package>>.git
+      
+      - run:
+          name: Get PKGBUILD - AUR
+          command: git clone https://aur.archlinux.org/<<parameters.package>>.git
       
       - run:
           name: Patch sources
@@ -37,7 +23,7 @@ commands:
       
       - run:
           name: Build package
-          command: docker run --workdir /pkg -e CI=true -v "$(pwd):/pkg" ghcr.io/spacefall/actions-makepkg:main <<parameters.package>> "echo $'[spacefall]\nSigLevel = Never\nServer = https://github.com/spacefall/pacman-repo/releases/latest/download' | sudo tee -a /etc/pacman.conf && sudo pacman -Sy" "skylake" "skylake" <<parameters.skipRuntimeDeps>> 
+          command: docker run --workdir /pkg -e CI=true -v "$(pwd):/pkg" ghcr.io/spacefall/actions-makepkg:main <<parameters.package>> "echo $'[spacefall]\nSigLevel = Never\nServer = https://github.com/spacefall/pacman-repo/releases/latest/download' | sudo tee -a /etc/pacman.conf && sudo pacman -Sy" "" "skylake" "skylake" <<parameters.skipRuntimeDeps>> 
       
       - store_artifacts:
           path: <<parameters.package>>/*.pkg*
