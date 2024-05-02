@@ -1,0 +1,81 @@
+version: 2.1
+
+commands:
+  build:
+    parameters:
+      package:
+        type: string
+      isAur:
+        type: boolean
+      skipRuntimeDeps:
+        type: boolean
+    steps:
+      - checkout 
+
+      - when:
+          condition:
+            equals: [ true, <<parameters.isAur>> ]
+          name: Get PKGBUILD - AUR
+          run: git clone https://aur.archlinux.org/<<parameters.package>>.git
+
+      - when:
+          condition:
+            equals: [ false, <<parameters.isAur>> ]
+          name: Get PKGBUILD - Arch Gitlab
+          run: git clone https://gitlab.archlinux.org/archlinux/packaging/packages/<<parameters.package>>.git
+      
+      - run:
+          name: Patch sources
+          command: |
+            cd <<parameters.package>> 
+            [ -f "../<<parameters.package>> -patch/PKGBUILD.patch" ] && cp ../<<parameters.package>> -patch/* . && patch -u < PKGBUILD.patch || echo "No patches to apply"
+            [ -f ".SRCINFO" ] && echo "Deleting .SRCINFO" && rm -f .SRCINFO || echo ".SRCINFO isn't present"
+      
+      - run:
+          name: Build package
+          command: docker run --workdir /pkg -e CI=true -v "$(pwd):/pkg" ghcr.io/spacefall/actions-makepkg:main <<parameters.package>> "echo $'[spacefall]\nSigLevel = Never\nServer = https://github.com/spacefall/pacman-repo/releases/latest/download' | sudo tee -a /etc/pacman.conf && sudo pacman -Sy" "skylake" "skylake" <<parameters.skipRuntimeDeps>> 
+      
+      - store_artifacts:
+          path: <<parameters.package>>/*.pkg*
+          destination: <<parameters.package>>
+
+jobs:
+  betterbird:
+    machine:
+      image: ubuntu-2204
+    resource_class: medium
+    steps:
+      - build:
+          package: betterbird-it-bin
+          isAur: true
+          skipRuntimeDeps: false
+
+  prismlauncher:
+    machine:
+      image: ubuntu-2204
+    resource_class: large
+    steps:
+      - build:
+          package: prismlauncher
+          isAur: true
+          skipRuntimeDeps: false
+  
+  waterfox:
+    machine:
+      image: ubuntu-2204
+    resource_class: xlarge
+    steps:
+      - build:
+          package: waterfox
+          isAur: true
+          skipRuntimeDeps: false
+
+  xanmod:
+    machine:
+      image: ubuntu-2204
+    resource_class: xlarge
+    steps:
+      - build:
+          package: linux-xanmod
+          isAur: true
+          skipRuntimeDeps: false
