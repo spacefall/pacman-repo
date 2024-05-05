@@ -88,6 +88,13 @@ jobs:
       isAur: true
       skipRuntimeDeps: false
 
+  xanmod:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: linux-xanmod
+      isAur: true
+      skipRuntimeDeps: false
+
   # Deps ---------------------------------------------
 
   python-libsass:
