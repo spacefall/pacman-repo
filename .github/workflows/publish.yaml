@@ -2,55 +2,49 @@ name: Publish Updates
 concurrency:
   group: publish
   cancel-in-progress: true
-on:
+'on':
   workflow_run:
-    workflows: [Update Packages (build), Update Gnome Extensions, Update Packages (repack)]
+    workflows:
+      - Update Packages (build)
+      - Update Gnome Extensions
+      - Update Packages (repack)
     types:
       - completed
-  workflow_dispatch:
-
+  workflow_dispatch: null
 jobs:
-
   publish:
     runs-on: ubuntu-latest
     steps:
-     - name: Download extensions
-       uses: dawidd6/action-download-artifact@v6
-       with:
+      - name: Download extensions
+        uses: dawidd6/action-download-artifact@v6
+        with:
           workflow: exts.yaml
           path: built-pkgs/
-
-     - name: Download repacks
-       uses: dawidd6/action-download-artifact@v6
-       with:
+      - name: Download repacks
+        uses: dawidd6/action-download-artifact@v6
+        with:
           workflow: repacks.yaml
           path: built-pkgs/
-
-     - name: Download builds
-       uses: dawidd6/action-download-artifact@v6
-       with:
+      - name: Download builds
+        uses: dawidd6/action-download-artifact@v6
+        with:
           workflow: builds.yaml
           path: built-pkgs/
-
-      # from https://github.com/fwcd/arch-repo/blob/main/.github/workflows/build.yml
       - name: Preparing package database
         run: |
-            mkdir repo
-            cd built-pkgs/
-            mv */*.pkg.tar.zst ../repo/
-            cd ..
-            
+          mkdir repo
+          cd built-pkgs/
+          mv */*.pkg.tar.zst ../repo/
+          cd ..
       - name: Building package database
         uses: spacefall/actions-makepkg@pkg-db
         with:
           dir: repo/
           reponame: spacefall
-
       - name: Publish release
         if: github.ref == 'refs/heads/main'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: '${{ github.token }}'
         run: |
           tag="$(date '+%Y-%m-%d-%H-%M')"
           gh release create "$tag" --title "$tag" --notes "" repo/*
-  
