@@ -19,6 +19,20 @@ jobs:
       isAur: true
       skipRuntimeDeps: false
 
+  prismlauncher:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: prismlauncher
+      isAur: true
+      skipRuntimeDeps: false
+      
+  paru:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: paru
+      isAur: true
+      skipRuntimeDeps: false
+      
   opentabletdriver:
     uses: ./.github/workflows/builder.yaml
     with:
