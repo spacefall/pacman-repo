@@ -1,0 +1,49 @@
+name: Update Packages (repack)
+concurrency:
+  group: repack
+  cancel-in-progress: true
+on:
+  schedule:
+    - cron: "0 6 */25 * *"
+  #push: 
+  #  branches:
+  #    - main
+  workflow_dispatch:
+
+jobs:
+
+  spicetify-marketplace:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: spicetify-marketplace-bin
+      isAur: true
+      skipRuntimeDeps: true
+
+  betterbird:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: betterbird-it-bin
+      isAur: true
+      skipRuntimeDeps: false
+
+  spotify:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: spotify
+      isAur: true
+      skipRuntimeDeps: true
+      
+  vscode:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: visual-studio-code-bin
+      isAur: true
+      skipRuntimeDeps: true
+
+  jetbrains:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: jetbrains-toolbox
+      isAur: true
+      skipRuntimeDeps: true
+ 

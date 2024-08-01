@@ -1,0 +1,49 @@
+name: Update Packages (build)
+concurrency:
+  group: build
+  cancel-in-progress: true
+on:
+  schedule:
+    - cron: "0 4 */15 * *"
+  #push: 
+  #  branches:
+  #    - main
+  workflow_dispatch:
+
+jobs:
+
+  blackbox:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: blackbox-terminal
+      isAur: true
+      skipRuntimeDeps: false
+
+  opentabletdriver:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: opentabletdriver
+      isAur: true
+      skipRuntimeDeps: true
+
+  dissent:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: dissent
+      isAur: true
+      skipRuntimeDeps: false
+
+  spicetify:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: spicetify-cli-git
+      isAur: true
+      skipRuntimeDeps: true
+
+  polychromatic:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: polychromatic
+      isAur: true
+      skipRuntimeDeps: true
+
