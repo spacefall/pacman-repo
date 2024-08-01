@@ -19,6 +19,13 @@ jobs:
       isAur: true
       skipRuntimeDeps: false
 
+  libpqmarble:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: libpqmarble
+      isAur: true
+      skipRuntimeDeps: false
+      
   prismlauncher:
     uses: ./.github/workflows/builder.yaml
     with:
