@@ -21,7 +21,7 @@ on:
         type: string
       isAur:
         required: true
-        description: "Is package part of the aur or the core/extra packages?"
+        description: "Is package part of the AUR?"
         type: boolean
       skipRuntimeDeps:
         required: true
