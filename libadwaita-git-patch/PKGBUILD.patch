@@ -1,0 +1,12 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index 1a4f782..d3a3780 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -36,6 +36,7 @@ makedepends=(
+   meson
+   gi-docgen
+   sassc
++  glib2-devel
+   gobject-introspection
+   vala)
+ checkdepends=(
