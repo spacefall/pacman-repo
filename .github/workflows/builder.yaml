@@ -12,6 +12,22 @@ on:
       skipRuntimeDeps:
         required: true
         type: boolean
+        
+  workflow_dispatch:
+    inputs:
+      package:
+        required: true
+        description: "Name of package to build"
+        type: string
+      isAur:
+        required: true
+        description: "Is package part of the aur or the core/extra packages?"
+        type: boolean
+      skipRuntimeDeps:
+        required: true
+        description: "Skip installation on runtime dependencies?"
+        type: boolean
+      
 
 jobs:
   build:
