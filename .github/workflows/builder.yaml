@@ -54,7 +54,7 @@ jobs:
         uses: spacefall/actions-makepkg@main
         with:
           dir: ${{inputs.package}}/
-          command: "echo $'[spacefall]\nSigLevel = Never\nServer = https://github.com/spacefall/pacman-repo/releases/latest/download' | sudo tee -a /etc/pacman.conf && sudo pacman -Sy"
+          #command: "echo $'[spacefall]\nSigLevel = Never\nServer = https://github.com/spacefall/pacman-repo/releases/latest/download' | sudo tee -a /etc/pacman.conf && sudo pacman -Sy"
           march: skylake
           mtune: skylake
           skipruntimedeps: ${{inputs.skipRuntimeDeps}}
