@@ -1,8 +1,16 @@
 diff --git a/PKGBUILD b/PKGBUILD
-index 1a4f782..d3a3780 100644
+index 1a4f782..1c49b18 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
-@@ -36,6 +36,7 @@ makedepends=(
+@@ -29,13 +29,14 @@ arch=(
+   'armv7h')
+ license=(LGPL)
+ depends=(
+-  "gtk4>=4.11")
++  "gtk4-git>=4.11")
+ makedepends=(
+   cmake
+   git
    meson
    gi-docgen
    sassc
