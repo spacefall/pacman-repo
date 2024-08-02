@@ -15,7 +15,7 @@ jobs:
   rounded-windows:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: gnome-shell-extension-rounded-window-corners-git
+      package: gnome-shell-extension-rounded-window-corners-reborn-git
       isAur: true
       skipRuntimeDeps: true
 
