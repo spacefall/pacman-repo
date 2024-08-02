@@ -28,13 +28,13 @@ jobs:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-blur-my-shell-git
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
 
   caffeine:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-caffeine-git
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
 
   appindicator:
     uses: ./.github/workflows/builder.yaml
@@ -52,19 +52,19 @@ jobs:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-just-perfection-desktop-git
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
 
   panel-corners:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-panel-corners-git
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
 
   qstweaks:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-quick-settings-tweaks-git
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
 
   search-light:
     uses: ./.github/workflows/builder.yaml
@@ -82,5 +82,5 @@ jobs:
     uses: ./.github/workflows/builder.yaml
     with:
       package: gnome-shell-extension-gpu-profile-selector-git
-      skipRuntimeDeps: false
+      skipRuntimeDeps: true
 
