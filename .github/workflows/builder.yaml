@@ -10,8 +10,13 @@ on:
 #        required: true
 #        type: boolean
       skipRuntimeDeps:
-        required: true
         type: boolean
+        default: false
+        required: false
+      skipRuntimeDeps:
+        type: boolean
+        default: false
+        required: false
         
   workflow_dispatch:
     inputs:
@@ -24,15 +29,33 @@ on:
 #        description: "Is package part of the AUR?"
 #        type: boolean
       skipRuntimeDeps:
-        required: true
         description: "Skip installation on runtime dependencies?"
         type: boolean
+        default: false
+        required: false
+      maxSpace:
+        description: "Maximize space on runner?"
+        type: boolean
+        default: false
+        required: false
       
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Maximize build space
+        if: ${{inputs.maxSpace}}
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          swap-size-mb: 2048
+          remove-dotnet: true
+          remove-android: true
+          remove-haskell: true
+          remove-codeql: true
+          remove-docker-images: true
+            
       - name: Get Patches
         uses: actions/checkout@v4
         
