@@ -16,55 +16,47 @@ jobs:
     uses: ./.github/workflows/builder.yaml
     with:
       package: blackbox-terminal
-      isAur: true
       skipRuntimeDeps: false
 
   libpqmarble:
     uses: ./.github/workflows/builder.yaml
     with:
       package: libpqmarble
-      isAur: true
       skipRuntimeDeps: false
       
   prismlauncher:
     uses: ./.github/workflows/builder.yaml
     with:
       package: prismlauncher
-      isAur: true
       skipRuntimeDeps: false
       
   paru:
     uses: ./.github/workflows/builder.yaml
     with:
       package: paru
-      isAur: true
       skipRuntimeDeps: false
       
   opentabletdriver:
     uses: ./.github/workflows/builder.yaml
     with:
       package: opentabletdriver
-      isAur: true
       skipRuntimeDeps: true
 
   dissent:
     uses: ./.github/workflows/builder.yaml
     with:
       package: dissent
-      isAur: true
       skipRuntimeDeps: false
 
   spicetify:
     uses: ./.github/workflows/builder.yaml
     with:
       package: spicetify-cli-git
-      isAur: true
       skipRuntimeDeps: true
 
   polychromatic:
     uses: ./.github/workflows/builder.yaml
     with:
       package: polychromatic
-      isAur: true
       skipRuntimeDeps: true
 
