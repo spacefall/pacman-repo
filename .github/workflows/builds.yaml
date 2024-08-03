@@ -12,6 +12,12 @@ on:
 
 jobs:
 
+  onlyoffice:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: onlyoffice
+      maxSpace: true
+
   blackbox:
     uses: ./.github/workflows/builder.yaml
     with:
