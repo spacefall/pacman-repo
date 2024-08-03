@@ -22,7 +22,6 @@ jobs:
     uses: ./.github/workflows/builder.yaml
     with:
       package: betterbird-it-bin
-      skipRuntimeDeps: false
 
   spotify:
     uses: ./.github/workflows/builder.yaml

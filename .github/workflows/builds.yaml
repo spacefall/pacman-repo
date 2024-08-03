@@ -16,25 +16,21 @@ jobs:
     uses: ./.github/workflows/builder.yaml
     with:
       package: blackbox-terminal
-      skipRuntimeDeps: false
 
   libpqmarble:
     uses: ./.github/workflows/builder.yaml
     with:
       package: libpqmarble
-      skipRuntimeDeps: false
       
   prismlauncher:
     uses: ./.github/workflows/builder.yaml
     with:
       package: prismlauncher
-      skipRuntimeDeps: false
       
   paru:
     uses: ./.github/workflows/builder.yaml
     with:
       package: paru
-      skipRuntimeDeps: false
       
   opentabletdriver:
     uses: ./.github/workflows/builder.yaml
@@ -46,7 +42,6 @@ jobs:
     uses: ./.github/workflows/builder.yaml
     with:
       package: dissent
-      skipRuntimeDeps: false
 
   spicetify:
     uses: ./.github/workflows/builder.yaml
