@@ -38,6 +38,7 @@ jobs:
           cd built-pkgs/
           mv */*.pkg.tar.zst ../repo/
           cd ..
+          rm -fr repo/*debug*
       - name: Building package database
         uses: spacefall/actions-makepkg@pkg-db
         with:
