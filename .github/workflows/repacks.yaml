@@ -41,3 +41,8 @@ jobs:
       package: jetbrains-toolbox
       skipRuntimeDeps: true
  
+  thorium:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: thorium-browser-bin
+      skipRuntimeDeps: true
