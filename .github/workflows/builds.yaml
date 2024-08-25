@@ -28,10 +28,10 @@ jobs:
     with:
       package: libpqmarble
       
-  prismlauncher:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: prismlauncher
+  #prismlauncher:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: prismlauncher
       
   paru:
     uses: ./.github/workflows/builder.yaml
@@ -44,10 +44,10 @@ jobs:
       package: opentabletdriver
       skipRuntimeDeps: true
 
-  dissent:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: dissent
+ # dissent:
+ #   uses: ./.github/workflows/builder.yaml
+ #   with:
+ #     package: dissent
 
   spicetify:
     uses: ./.github/workflows/builder.yaml
@@ -61,9 +61,9 @@ jobs:
       package: polychromatic
       skipRuntimeDeps: true
 
-  hydroxide:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: hydroxide-git
-      skipRuntimeDeps: true
+ # hydroxide:
+ #   uses: ./.github/workflows/builder.yaml
+ #   with:
+ #     package: hydroxide-git
+ #     skipRuntimeDeps: true
 
