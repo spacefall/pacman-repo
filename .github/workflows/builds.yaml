@@ -43,6 +43,12 @@ jobs:
       package: polychromatic
       skipRuntimeDeps: true
 
+  naps2:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: naps2
+      skipRuntimeDeps: true
+
  # hydroxide:
  #   uses: ./.github/workflows/builder.yaml
  #   with:
