@@ -1,6 +1,6 @@
 name: Update Packages (build, long)
 concurrency:
-  group: build
+  group: buildlong
   cancel-in-progress: true
 on:
   schedule:
