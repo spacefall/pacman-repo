@@ -1,0 +1,21 @@
+name: Update Packages (build, long)
+concurrency:
+  group: build
+  cancel-in-progress: true
+on:
+  schedule:
+    - cron: "30 4 */14 * *"
+  workflow_dispatch:
+
+jobs:
+  onlyoffice:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: onlyoffice
+      maxSpace: true
+
+  prismlauncher:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: prismlauncher
+      

@@ -4,22 +4,10 @@ concurrency:
   cancel-in-progress: true
 on:
   schedule:
-    - cron: "0 4 */15 * *"
+    - cron: "0 4 * * 0"
   workflow_dispatch:
 
 jobs:
-
-  onlyoffice:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: onlyoffice
-      maxSpace: true
-
-  #prismlauncher:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: prismlauncher
-      
   paru:
     uses: ./.github/workflows/builder.yaml
     with:

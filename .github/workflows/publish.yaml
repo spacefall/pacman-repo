@@ -6,6 +6,7 @@ concurrency:
   workflow_run:
     workflows:
       - Update Packages (build)
+      - Update Packages (build, long)
       - Update Packages (repack)
     types:
       - completed
@@ -25,6 +26,11 @@ jobs:
         uses: dawidd6/action-download-artifact@v6
         with:
           workflow: builds.yaml
+          path: built-pkgs/
+      - name: Download long builds
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          workflow: longbuilds.yaml
           path: built-pkgs/
       - name: Preparing package database
         run: |
