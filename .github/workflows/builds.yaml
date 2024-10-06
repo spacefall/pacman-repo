@@ -18,15 +18,15 @@ jobs:
       package: onlyoffice
       maxSpace: true
 
-  blackbox:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: blackbox-terminal
+  #blackbox:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: blackbox-terminal
 
-  libpqmarble:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: libpqmarble
+  #libpqmarble:
+  #  uses: ./.github/workflows/builder.yaml
+  #  with:
+  #    package: libpqmarble
       
   #prismlauncher:
   #  uses: ./.github/workflows/builder.yaml
