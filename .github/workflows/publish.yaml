@@ -6,7 +6,6 @@ concurrency:
   workflow_run:
     workflows:
       - Update Packages (build)
-      - Update Gnome Extensions
       - Update Packages (repack)
     types:
       - completed
@@ -17,11 +16,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Download extensions
-        uses: dawidd6/action-download-artifact@v6
-        with:
-          workflow: exts.yaml
-          path: built-pkgs/
       - name: Download repacks
         uses: dawidd6/action-download-artifact@v6
         with:

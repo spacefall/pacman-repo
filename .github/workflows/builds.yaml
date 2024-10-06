@@ -5,9 +5,6 @@ concurrency:
 on:
   schedule:
     - cron: "0 4 */15 * *"
-  #push: 
-  #  branches:
-  #    - main
   workflow_dispatch:
 
 jobs:
@@ -18,16 +15,6 @@ jobs:
       package: onlyoffice
       maxSpace: true
 
-  #blackbox:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: blackbox-terminal
-
-  #libpqmarble:
-  #  uses: ./.github/workflows/builder.yaml
-  #  with:
-  #    package: libpqmarble
-      
   #prismlauncher:
   #  uses: ./.github/workflows/builder.yaml
   #  with:
@@ -43,11 +30,6 @@ jobs:
     with:
       package: opentabletdriver
       skipRuntimeDeps: true
-
- # dissent:
- #   uses: ./.github/workflows/builder.yaml
- #   with:
- #     package: dissent
 
   spicetify:
     uses: ./.github/workflows/builder.yaml
