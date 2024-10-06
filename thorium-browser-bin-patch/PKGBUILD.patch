@@ -1,0 +1,12 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index f2c15d5..a20c3d7 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -8,6 +8,7 @@ pkgbase="$pkgname"
+ pkgver=126.0.6478.231
+ pkgrel=4
+ pkgdesc="Chromium fork focused on high performance and security"
++CARCH="x86_64_v3"
+ url="https://github.com/Alex313031/Thorium"
+ license=('BSD')
+ arch=('i386' 'x86_64' 'x86_64_v2' 'x86_64_v3')
