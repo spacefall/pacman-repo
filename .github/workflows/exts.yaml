@@ -3,8 +3,8 @@ concurrency:
   group: exts
   cancel-in-progress: true
 on:
-  schedule:
-    - cron: "0 5 1 * *"
+  #schedule:
+  #  - cron: "0 5 1 * *"
   #push: 
   #  branches:
   #    - main
