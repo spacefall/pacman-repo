@@ -22,7 +22,7 @@ jobs:
   spicetify:
     uses: ./.github/workflows/builder.yaml
     with:
-      package: spicetify-cli-git
+      package: spicetify-cli
       skipRuntimeDeps: true
 
   polychromatic:
