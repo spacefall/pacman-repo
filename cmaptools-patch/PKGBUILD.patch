@@ -1,0 +1,61 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index e683d70..8c6c550 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -10,7 +10,7 @@ url="http://cmap.ihmc.us/"
+ license=('unknown')
+ depends=('java-environment>=7' 
+         'java-environment<9')
+-makedepends=('the_silver_searcher')
++#makedepends=('the_silver_searcher')
+ 
+ source=(http://cmapdownload.ihmc.us/installs/CmapTools/Linux/Linux64CmapTools_$pkgver\_$_pkgdate.bin
+ 	installer.properties
+@@ -26,26 +26,23 @@ md5sums=('5a0ad2197b7dfbac2722b4ea9b256a75'
+ 	'772e8c9d9be5e9728f32b1a8adcc10ba'
+ 	)
+ 
+-
+-package() {
+-	mkdir -p $pkgdir/opt/cmaptools
+-
++build() {
+ 	# Start installer in silent mode (see
+ 	# http://cmap.ihmc.us/docs/cmaptools-console-silent-installation.php for
+ 	# silent installation instructions)
+ 	chmod +x Linux64CmapTools_$pkgver\_$_pkgdate.bin
+-	./Linux64CmapTools_$pkgver\_$_pkgdate.bin \
+-		-f $PWD/installer.properties \
+-		-DUSER_INSTALL_DIR=$pkgdir/opt/cmaptools \
+-		-DUSER_SHORTCUTS=$pkgdir/usr/share/applications \
+-	|| true
+-
++	./Linux64CmapTools_$pkgver\_$_pkgdate.bin -f $PWD/installer.properties -DUSER_INSTALL_DIR=$srcdir/extract/opt/cmaptools -DUSER_SHORTCUTS=$srcdir/extract/usr/share/applications || true
++	
+ 	# Remove useless symbolic links
+-	rm $pkgdir/opt/cmaptools/Uninstall\ CmapTools
+-	rm $pkgdir/opt/cmaptools/CmapTools
++	rm $srcdir/extract/opt/cmaptools/Uninstall\ CmapTools
++	rm $srcdir/extract/opt/cmaptools/CmapTools
+ 
+ 	# Remove useless uninstaller
+-	rm -r $pkgdir/opt/cmaptools/UninstallerData
++	rm -r $srcdir/extract/opt/cmaptools/UninstallerData
++}
++
++package() {
++	mv $srcdir/extract/* $pkgdir
+ 
+ 	# Copy icon
+ 	install -Dm644 icon.png $pkgdir/opt/cmaptools/icon.png
+@@ -58,7 +55,9 @@ package() {
+ 
+ 	# Fix references to $pkgdir because installer is dumb
+ 	cd $pkgdir
+-	ag $pkgdir -l --print0 | xargs -0 sed -i "s=$pkgdir=/opt=g"
++	
++	#ag $pkgdir -l --print0 | xargs -0 sed -i "s=$pkgdir=/opt=g"
++	find $pkgdir -exec sed -i "s=$pkgdir=/opt=g" {} \;
+ 
+ 	# Remove embedded JRE
+ 	rm -r $pkgdir/opt/cmaptools/jre
