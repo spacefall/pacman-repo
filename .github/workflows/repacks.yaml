@@ -46,3 +46,9 @@ jobs:
     with:
       package: thorium-browser-bin
       skipRuntimeDeps: true
+
+  termius:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: termius-deb
+      skipRuntimeDeps: true
