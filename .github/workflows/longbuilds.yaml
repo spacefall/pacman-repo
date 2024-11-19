@@ -13,9 +13,3 @@ jobs:
     with:
       package: onlyoffice
       maxSpace: true
-
-  prismlauncher:
-    uses: ./.github/workflows/builder.yaml
-    with:
-      package: prismlauncher
-      
