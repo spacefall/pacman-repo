@@ -37,6 +37,12 @@ jobs:
       package: naps2
       skipRuntimeDeps: true
 
+  qimgv:
+    uses: ./.github/workflows/builder.yaml
+    with:
+      package: qimgv-git
+      skipRuntimeDeps: false
+
  # hydroxide:
  #   uses: ./.github/workflows/builder.yaml
  #   with:
